@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noorul Huda Arabic College Portal</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="lang-switch" onclick="toggleLanguage()"><i class="fas fa-language"></i> English / മലയാളം</div>
+  
+  <img src="data:image/jpeg;base64,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" alt="College Logo" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 10px; background: white; padding: 5px;">
+  
+  <h1 data-en="Noorul Huda Arabic College" data-ml="നൂറുൽ ഹുദാ അറബിക് കോളേജ്">Noorul Huda Arabic College</h1>
+  <p style="margin-top:8px; font-weight: 300; font-size: 0.95rem;">Official Registration & Identity Management</p>
+</header>
+
+<div class="container">
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-header" data-en="Student Registration" data-ml="വിദ്യാർത്ഥി രജിസ്ട്രേഷൻ">Student Registration</div>
+      <div class="card-body">
+        <label data-en="Full Name" data-ml="പൂർണ്ണ നാമം">Full Name</label>
+        <input type="text" id="sName" placeholder="Enter full name">
+        
+        <label data-en="Phone Number" data-ml="ഫോൺ നമ്പർ">Phone Number</label>
+        <input type="tel" id="sPhone" placeholder="10-digit mobile number">
+        
+        <label data-en="Aadhaar Number" data-ml="ആധാർ നമ്പർ">Aadhaar Number</label>
+        <input type="text" id="sAadhaar" placeholder="12-digit Aadhaar">
+        
+        <label data-en="Profile Photo" data-ml="ഫോട്ടോ തിരഞ്ഞെടുക്കുക">Profile Photo</label>
+        <input type="file" id="sPhoto" accept="image/*">
+        
+        <button id="sBtn" onclick="handleSave('students')" data-en="Submit Registration" data-ml="രജിസ്റ്റർ ചെയ്യുക"><i class="fas fa-user-plus"></i> Submit Registration</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" data-en="Alumni Registration" data-ml="പൂർവ്വ വിദ്യാർത്ഥി രജിസ്ട്രേഷൻ">Alumni Registration</div>
+      <div class="card-body">
+        <label data-en="Full Name" data-ml="പൂർണ്ണ നാമം">Full Name</label>
+        <input type="text" id="aName" placeholder="Enter full name">
+        
+        <label data-en="Batch Year" data-ml="ബാച്ച് വർഷം">Batch Year</label>
+        <input type="text" id="aBatch" placeholder="e.g. 2015-2018">
+        
+        <label data-en="Current Occupation" data-ml="ജോലി">Current Occupation</label>
+        <input type="text" id="aJob" placeholder="Your current job/profession">
+        
+        <label data-en="WhatsApp Number" data-ml="വാട്സ്ആപ്പ് നമ്പർ">WhatsApp Number</label>
+        <input type="tel" id="aWhats" placeholder="10-digit WhatsApp number">
+        
+        <label data-en="Profile Photo" data-ml="ഫോട്ടോ തിരഞ്ഞെടുക്കുക">Profile Photo</label>
+        <input type="file" id="aPhoto" accept="image/*">
+        
+        <button id="aBtn" onclick="handleSave('alumni')" data-en="Submit Registration" data-ml="രജിസ്റ്റർ ചെയ്യുക"><i class="fas fa-user-graduate"></i> Submit Registration</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin: 40px 0;">
+    <button style="width:auto; padding: 10px 30px; background:white; color:var(--primary); border:2px solid var(--primary);" onclick="showAdminPrompt()">
+      <i class="fas fa-lock"></i> <span data-en="Admin Panel" data-ml="അഡ്മിൻ പാനൽ">Admin Panel</span>
+    </button>
+  </div>
+
+  <div id="admin-panel">
+    <div class="card">
+      <div class="card-header bg-dark">Admin Control Center</div>
+      <div class="card-body">
+        <input type="text" id="searchBox" placeholder="Search by name..." oninput="displayRecords()" style="margin-bottom: 20px;">
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+          <button class="btn-gold" onclick="downloadList('students')"><i class="fas fa-file-pdf"></i> Student List</button>
+          <button class="btn-gold" onclick="downloadList('alumni')"><i class="fas fa-file-pdf"></i> Alumni List</button>
+        </div>
+        
+        <div id="displayArea"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/919946125313" class="whatsapp-float" target="_blank" title="Contact Support"><i class="fab fa-whatsapp"></i></a>
+
+<script src="script.js"></script>
+
+</body>
+</html>
